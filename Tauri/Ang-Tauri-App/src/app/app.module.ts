@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule} from "@angular/forms";
 import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
+import {MatTreeModule} from "@angular/material/tree";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 export function onMonacoLoad() {
 
@@ -60,7 +64,11 @@ const monacoConfig: NgxMonacoEditorConfig = {
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    MonacoEditorModule.forRoot(monacoConfig)
+    MonacoEditorModule.forRoot(),
+    MatTreeModule,
+    MatIconModule,
+    MatButtonModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

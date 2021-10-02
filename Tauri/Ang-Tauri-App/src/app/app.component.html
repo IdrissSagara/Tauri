@@ -1,8 +1,30 @@
+<div class="row">
+  <div class="col-md-3">
+    <ul>
+      <ng-container
+        *ngTemplateOutlet="Recursion; context:{ list: listPath}"
+      ></ng-container>
+    </ul>
 
-  <ngx-monaco-editor class="my-code-editor" [options]="editorOptions"
-                     [(ngModel)]="code"
-                     (onInit)="onInit($event)">
 
-  </ngx-monaco-editor>
 
-<router-outlet></router-outlet>
+
+    <ng-template #Recursion let-list="list">
+      <li *ngFor="let item of list">
+        <a href="#" (click)="openFile(item)" >{{ item.name }}</a>
+        <ul *ngIf="item.children != null">
+          <ng-container
+            *ngTemplateOutlet="Recursion; context:{ list: item.children }"
+          ></ng-container>
+        </ul>
+      </li>
+    </ng-template>
+  </div>
+
+  <div class="col-md-8" style="height: 100vh">
+    <ngx-monaco-editor class="my-code-editor" style="height: 100%" [options]="editorOptions" [(ngModel)]="code"  >
+      <!-- <ngx-monaco-editor class="my-code-editor" style="height: 100%" [options]="editorOptions" [model]="model" > -->
+
+    </ngx-monaco-editor>
+  </div>
+</div>
